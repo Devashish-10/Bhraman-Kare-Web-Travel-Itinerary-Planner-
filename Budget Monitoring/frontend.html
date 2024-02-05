@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget Monitoring</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Track Your Expenses</h1>
+  <table class="table table-striped" id="ExpenseTable">
+    <thead>
+      <tr>
+        <th scope="col">Expense Cause</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" id="ExpenseCause" name="ExpenseCause" class="form-control"></td>
+        <td><input type="text" id="ExpenseDate" name="ExpenseDate" class="form-control"></td>
+        <td><input type="text" id="ExpenseTime" name="ExpenseTime" class="form-control"></td>
+        <td><input type="text" id="ExpenseAmount" name="ExpenseAmount" class="form-control"></td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="CalculateExpenseButton" class="btn btn-primary">Calculate Total Expenditure</button>
+  <p>Total Amount Spent: <span id="totalAmount">0</span></p>
+<p>Max Expense: <span id="maxExpense">N/A</span></p>
+<p>Min Expense: <span id="minExpense">N/A</span></p>
+  <ul id="sortedExpense"></ul>
+  <script src="backend.js"></script>
+</body>
+</html>

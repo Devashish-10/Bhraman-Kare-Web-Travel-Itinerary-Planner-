@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Itinerary</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.js"></script>
+    <style>
+        .features {
+        margin-top: 50px;
+        display: block; 
+    }
+
+    .feature-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100vw;
+    height: 900px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.3s ease;
+}
+
+.feature-image {
+    flex: 1;
+    background-image: url('./assets/explore/Trip.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.feature-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-content h2,
+.feature-content p,
+.feature-content button {
+    
+        display: block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: orange;
+        color: white;
+        cursor: pointer;
+    
+}
+
+
+    .feature-box:nth-child(1) {
+        background-image: url('./assets/explore/Trip.jpg'); 
+    }
+
+    .feature-box:nth-child(2) {
+        background-image: url('./assets/explore/expense tracker.jpg'); 
+    }
+
+    .feature-box:nth-child(3) {
+        background-image: url('./assets/explore/packaging.jpg');
+    }
+
+    .feature-box:nth-child(4) {
+        background-image: url('./assets/explore/weather.jpg'); 
+    }
+
+    .feature-box:nth-child(5) {
+        background-image: url('./assets/explore/AQI.jpg');
+    }
+
+    .feature-box:nth-child(6) {
+        background-image: url('./assets/explore/geocode.jpg'); 
+    }
+
+    .feature-box:nth-child(7) {
+        background-image: url('./assets/explore/hotel.jpg');
+    }
+    #trip-summarizer .feature-box {
+            background-image: url('./assets/explore/Trip.jpg');
+        }
+
+        #expense-tracker .feature-box {
+            background-image: url('./assets/explore/expense tracker.jpg');
+        }
+
+        #packaging .feature-box {
+            background-image: url('./assets/explore/packaging.jpg');
+        }
+
+        #weather-forecast .feature-box {
+            background-image: url('./assets/explore/weather.jpg');
+        }
+
+        #aqi-inspection .feature-box {
+            background-image: url('./assets/explore/AQI.jpg');
+        }
+
+        #geocode .feature-box {
+            background-image: url('./assets/explore/geocode.jpg');
+        }
+
+        #hotel-search .feature-box {
+            background-image: url('./assets/explore/hotel.jpg');
+        }
+        #direction .feature-box
+        {
+            background-image: url('./assets/explore/direction.jpg');
+        }
+    </style>
+</head>
+
+<body>
+
+<input type="checkbox" id="bars">
+<nav class="nav-bar" id="navbar">
+    <div class="content">
+        <div class="site-logo">
+            <a href="#" class="logo-link">Bhraman Kare</a>
+        </div>
+        <ul class="navigation">
+            <li class="link"><a href="#home">Home</a></li>
+            <li class="link"><a href="#expense-tracker">Expense Tracker</a></li>
+            <li class="link"><a href="#packaging">Packaging</a></li>
+            <li class="link"><a href="#weather-forecast">Weather Forecast</a></li>
+            <li class="link"><a href="#aqi-inspection">AQI Inspection</a></li>
+            <li class="link"><a href="#geocode">Geocode</a></li>
+            <li class="link"><a href="#hotel-search">Search Hotels</a></li>
+            <li class="link"><a href="#direction">Map</a></li>
+        </ul>
+        <label for='bars' class="icon-bars"><i class="ri-bar-chart-2-fill"></i></label>
+    </div>
+</nav>
+<header class="home" id="home">
+    <div class="content">
+        <h1>Prepare  <strong>your </strong> travel itinerary <strong>with</strong> Bhraman Kare </h1>
+    </div>
+</header>
+
+<section class="features">
+    
+    <section class="features" id="trip-summarizer">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/Trip.jpg');"></div>
+        <div class="feature-content">
+            <h2>Trip Summarizer</h2>
+            <p>A tool to summarize your travel itinerary.</p>
+            <button onclick="window.location.href='../Trip Summarizer/Frontend.html'">Create a Travel Summary</button>
+        </div>
+    </div>
+</section>
+   <section class="features" id="expense-tracker">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/expense tracker.jpg');"></div>
+        <div class="feature-content">
+            <h2>Expense Sheet</h2>
+            <p>Track your travel expenses effortlessly.</p>
+            <button onclick="window.location.href='../Budget Monitoring/frontend.html'">Manage Expense</button>
+        </div>
+    </div>
+</section>
+    <section class="features" id="packaging">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/packaging.jpg');"></div>
+        <div class="feature-content">
+            <h2>Packing List</h2>
+            <p>Ensure you don't forget essentials.</p>
+            <button onclick="window.location.href='../PackagingList/packing.html'">Create A Packing List</button>
+        </div>
+    </div>
+</section>
+    <section class="features" id="weather-forecast">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/weather.jpg');"></div>
+        <div class="feature-content">
+            <h2>Weather Forecast</h2>
+            <p>Stay informed about the local weather.</p>
+            <button onclick="window.location.href='../Weather Forecast/Frontend.html'">See Weather</button>
+        </div>
+    </div>
+</section>
+    <section class="features" id="aqi-inspection">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/AQI.jpg');"></div>
+        <div class="feature-content">
+            <h2>Air Quality Index</h2>
+            <p>Check the air quality of your destination.</p>
+            <button onclick="window.location.href='../Air Quality/aqi.html'">Check AQI</button>
+        </div>
+    </div>
+</section>
+    <section class="features" id="geocode">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/geocode.jpg');"></div>
+        <div class="feature-content">
+            <h2>Geocode</h2>
+            <p>Get the geographical coordinates of places.</p>
+            <button onclick="window.location.href='../Geocode/geocode.html'">Geocode</button>
+        </div>
+    </div>
+</section>
+   <section class="features" id="hotel-search">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/hotel.jpg');"></div>
+        <div class="feature-content">
+            <h2>Hotel Search</h2>
+            <p>Find and book accommodations easily.</p>
+            <button onclick="window.location.href='../Hotel Booking/hotel.html'">Search Hotels</button>
+        </div>
+    </div>
+</section>
+<section class="features" id="direction">
+    <div class="feature-box">
+        <div class="feature-image" style="background-image: url('./assets/explore/direction.jpg');"></div>
+        <div class="feature-content">
+            <h2>Map</h2>
+            <p>Check the best available route to your destination.</p>
+            <button onclick="window.location.href='../Maps/map.html'">Check Routes</button>
+        </div>
+    </div>
+</section>
+</section>
+<script src="main.js"></script>
+
+</body>
+
+</html>

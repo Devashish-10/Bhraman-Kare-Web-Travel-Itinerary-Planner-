@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bhraman Kare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+        h2 {
+            color: #333;
+        }
+        label, input {
+            display: block;
+            margin: 10px -10px;
+            width: 100%;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Sign Up for Bhraman Kare</h2>
+        <form id="signupForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <input type="submit" value="Sign Up" a href=>
+            </div>
+        </form>
+      
+    </div>
+    <script>
+        const form=document.getElementById("signupForm");
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+            window.location.href="Bhraman-kare c/dashboard.html";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip Plan</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1>Create Your Trip Plan</h1>
+    <table class="table table-striped" id="SummarizationTable">
+        <thead>
+            <tr>
+                <th scope="col">Place</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Activity</th>
+                <th scope="col">Spending</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" id="Place" name="Place" class="form-control"></td>
+                <td><input type="text" id="Date" name="Date" class="form-control"></td>
+                <td><input type="text" id="Time" name="Time" class="form-control"></td>
+                <td><input type="text" id="Activity" name="Activity" class="form-control"></td>
+                <td><input type="text" id="Spending" name="Spending" class="form-control"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="summary" class="btn btn-primary">Save Trip Plan</button>
+    <script src="backend.js"></script>
+</body>
+</html>

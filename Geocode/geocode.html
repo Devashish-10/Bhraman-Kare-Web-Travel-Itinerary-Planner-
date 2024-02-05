@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geocode Your Current Location</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('../Bhraman-kare c/assets/Response/Geocode.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none; /* Hide the header */
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #flashcard {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            max-width: 400px;
+            overflow: hidden;
+        }
+        #flashcard h2 {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            margin: 0;
+        }
+        #geocode-report {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Geocode Your Current Location</h1>
+    </header>
+    <form id="geocode-form">
+        <label for="location">Address (in latitude and longitude terms only)</label>
+        <input type="text" name="location" id="location">
+        <button type="submit">Geocode</button>
+    </form>
+    <div id="flashcard">
+        <h2>Geocode Results</h2>
+        <div id="geocode-report"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("geocode-form").addEventListener('submit', function (e) {
+                e.preventDefault();
+                var city = document.getElementById('location');
+                var geocodeReportElement = document.getElementById('geocode-report');
+                var flashcardElement = document.getElementById('flashcard');
+                flashcardElement.style.display = 'none'; 
+
+                var options = {
+                    method: 'GET',
+                    headers: new Headers({
+                        'X-RapidAPI-Key': '2935aee464mshdeec03e1b717674p1374e7jsn60313b40f0d1',
+                        'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
+                    })
+                };
+                
+                fetch('https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=' + encodeURIComponent(city.value) + '&language=en', options)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function(response){
+                    if(response && response.error){
+                        geocodeReportElement.innerHTML = '<p>An Error Occurred: ' + response.error.message + '</p>';
+                    } else {
+                        showGeocode(response, city, geocodeReportElement);
+                        flashcardElement.style.display = 'block';
+                    }
+                })
+                .catch(function(err){
+                    console.error(err);
+                    geocodeReportElement.innerHTML = '<p>An Unknown Error Occurred, Please Try Later</p>';
+                });
+            });
+        });
+
+        function showGeocode(response, city, geocodeReportElement) {
+            if (response.results && response.results.length > 0) {
+                var firstResult = response.results[0];
+
+                var geoReport = `
+                    <p>Address: ${city.value}</p>
+                    <p>Postal Code: ${firstResult.postal_code || 'N/A'}</p>
+                    <p>Country: ${firstResult.country || 'N/A'}</p>
+                    <p>Region: ${firstResult.region || 'N/A'}</p>
+                    <p>Area: ${firstResult.area || 'N/A'}</p>
+                    <p>Locality: ${firstResult.locality || 'N/A'}</p>
+                    <p>Neighborhood: ${firstResult.neighborhood || 'N/A'}</p>
+                    <p>Street: ${firstResult.street || 'N/A'}</p>
+                    <p>House: ${firstResult.house || 'N/A'}</p>
+                    <p>Location Type: ${firstResult.location_type || 'N/A'}</p>
+                    <p>Type: ${firstResult.type || 'N/A'}</p>
+                `;
+
+                geocodeReportElement.innerHTML = geoReport;
+            } else {
+                geocodeReportElement.innerHTML = '<p>No results found</p>';
+            }
+        }
+    </script>
+</body>
+</html>

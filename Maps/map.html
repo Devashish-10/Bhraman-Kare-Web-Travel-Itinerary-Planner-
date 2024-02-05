@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Routes</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        label,
+        input,
+        button {
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        #map {
+            height: 70vh;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Available Route</h1>
+    </header>
+
+    <form id="locationForm">
+        <label for="startLocation">Starting Location:</label>
+        <input type="text" id="startLocation" required>
+
+        <label for="endLocation">Final Destination:</label>
+        <input type="text" id="endLocation" required>
+
+        <button type="button" onclick="startTracking()">Find Route</button>
+    </form>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script>
+        let map;
+        let marker;
+
+        function initMap() {
+            map = L.map('map').setView([20.5937, 78.9629], 5); 
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        }
+
+        function startTracking() {
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+
+            clearMap();
+
+            geocodeLocation(startLocation, (startCoordinates) => {
+                geocodeLocation(endLocation, (endCoordinates) => {
+                    marker = L.marker(startCoordinates).addTo(map).bindPopup('Starting Location');
+                    marker.setLatLng(startCoordinates).update();
+                    map.setView(startCoordinates, 10);
+
+                    L.Routing.control({
+                        waypoints: [
+                            L.latLng(startCoordinates),
+                            L.latLng(endCoordinates)
+                        ],
+                        routeWhileDragging: true
+                    }).addTo(map);
+                });
+            });
+        }
+
+        function geocodeLocation(location, callback) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
+                .then(response => response.json())
+                .then(data => {
+                    const coordinates = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+                    callback(coordinates);
+                })
+                .catch(error => {
+                    console.error('Error fetching location:', error);
+                    alert('Error fetching location. Please try again.');
+                });
+        }
+
+        function clearMap() {
+            if (marker) map.removeLayer(marker);
+            map.eachLayer(layer => {
+                if (layer instanceof L.Control) {
+                    map.removeControl(layer);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+</body>
+
+</html>
